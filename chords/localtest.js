@@ -51,10 +51,44 @@ function CTEST() {
 
 function KEYTEST() {
 
-  console.log(chords.jazzChordsForKey(piano, "C", majorKeys["C"]))
+  results = chords.jazzMajorChordsForKey(piano, "C", majorKeys["C"], "colors", "II-V-i")
+  console.log(chords.sortProgression(results, "I-vi-ii-V"))
 
 }
 
-KEYTEST();
+function SEMITEST(root) {
+
+  var i = 0;
+  do {
+    console.log("C" + "-" + piano.find("C", i) + ": "+i)
+    i++
+  } while (i < 13)
+  
+
+}
+
+function UPPERSTRUCTURE() {
+  console.log("C Major Triad: "+chords.majorTriad(piano, "C"));
+  console.log("C Minor Triad: "+chords.minorTriad(piano, "C"));
+  console.log("G Upper Structure 1: "+chords.rootlessDominantUpperStructure1(piano, "G"));
+  console.log("G Upper Structure 2: "+chords.rootlessDominantUpperStructure2(piano, "G"));
+  console.log("G Upper Structure 3: "+chords.rootlessDominantUpperStructure3(piano, "G"));
+  console.log("G Upper Structure 4: "+chords.rootlessDominantUpperStructure4(piano, "G"));
+  console.log("G Upper Structure 5: "+chords.rootlessDominantUpperStructure5(piano, "G"));
+
+  console.log("C Upper Structure 1: "+chords.rootlessDominantUpperStructure1(piano, "C"));
+  console.log("C Upper Structure 2: "+chords.rootlessDominantUpperStructure2(piano, "C"));
+
+}
+
+function Drop2() {
+  console.log("F6 Drop 2 A: "+chords.drop2MajorSixA(piano, "F"));
+  console.log("F6 Drop 2 B: "+chords.drop2MajorSixB(piano, "F"));
+  console.log("F6 Drop 2 A: "+chords.drop2MinorSixA(piano, "F"));
+  console.log("F6 Drop 2 B: "+chords.drop2MinorSixB(piano, "F"));
+
+}
+
+KEYTEST()
 
 

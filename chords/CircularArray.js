@@ -142,6 +142,23 @@ class Node {
   
       return items
     }
+    toOptionsArray(direction = 'next') {
+      const items = []
+  
+      if (!this.size) return items
+  
+      let node = this.pointer
+  
+      // The list is looped, so we can’t keep iterating until there is no more
+      // next node since it never happens. We need to iterate until we find the
+      // pointer again — this is when we’ve gone full circle.
+      do {
+        items.push( {value: node.value, label: node.value})
+        node = node[direction]
+      } while (!Object.is(node, this.pointer))
+  
+      return items
+    }
 
     find(value, offset) {
 
@@ -158,8 +175,16 @@ class Node {
 
         if (found) {
 
+            // Major 3rd - 4
+            // C - 0
+            // C# - 1
+            // D - 2
+            // D# - 3
+            // E - 4
+
+
             // now find the node + offset
-            for (let i = 0; i <= offset; i++) {
+            for (let i = 0; i < (offset); i++) {
                 node = node.next
             }
 
