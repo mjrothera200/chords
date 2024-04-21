@@ -6,7 +6,8 @@ const chords = require("./Chords.js")
 const majorProgressions = [
   {value: "ordered", label: "Ordered"},
   {value: "ii-V-I", label: "ii-V-I"},
-  {value: "I-vi-ii-V", label: "I-vi-ii-V"}
+  {value: "I-vi-ii-V", label: "I-vi-ii-V"},
+  {value: "I-IV-III-vi-ii-V", label: "I-IV-III-vi-ii-V"}
 ]
 
 const piano = new circularArray.CircularArray([

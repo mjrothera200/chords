@@ -51,7 +51,7 @@ function CTEST() {
 
 function KEYTEST() {
 
-  results = chords.jazzMajorChordsForKey(piano, "C", majorKeys["C"], "colors", "II-V-i")
+  results = chords.jazzMajorChordsForKey(piano, "C", majorKeys["C"], "colors", "I-vi-ii-V")
   console.log(chords.sortProgression(results, "I-vi-ii-V"))
 
 }

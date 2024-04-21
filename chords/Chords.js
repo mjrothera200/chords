@@ -18,6 +18,7 @@ const SEMI_MINOR_THIRD = 3
 const SEMI_MAJOR_THIRD = 4
 const SEMI_FOURTH = 5
 const SEMI_MAJOR_ELEVENTH = 5
+const SEMI_MINOR_ELEVENTH = 5
 const SEMI_FIFTH = 7
 const SEMI_MINOR_SIXTH = 8
 const SEMI_MAJOR_SIXTH = 9
@@ -366,7 +367,7 @@ function majorColors(piano, root) {
 
     // 7, 9, or 13
 
-    colors = piano.find(root, SEMI_MAJOR_SEVENTH) + " (7), " + piano.find(root, SEMI_MAJOR_NINTH) + " (9), " + piano.find(root, SEMI_MAJOR_THIRTEENTH) + " (13)"
+    colors = piano.find(root, SEMI_MAJOR_SEVENTH) + " (7), " + "[ " + piano.find(root, SEMI_MAJOR_NINTH) + " Shell ]: " + piano.find(root, SEMI_MAJOR_NINTH) + " (9), " + piano.find(root, SEMI_MAJOR_THIRTEENTH) + " (13)"
 
     return colors
 
@@ -376,7 +377,7 @@ function minorColors(piano, root) {
 
    // ♭7, 9, or 13
 
-   colors = piano.find(root, SEMI_MINOR_SEVENTH) + " (♭7), " + piano.find(root, SEMI_MINOR_NINTH) + " (9), " + piano.find(root, SEMI_MINOR_THIRTEENTH) + " (13)"
+   colors = "[ "+piano.find(root, SEMI_MINOR_SEVENTH)+" Major Triad ]: "+piano.find(root, SEMI_MINOR_SEVENTH) + " (♭7), " + piano.find(root, SEMI_MINOR_NINTH) + " (9), " + piano.find(root, SEMI_MINOR_ELEVENTH) + " (11)"
 
    return colors
 
@@ -387,7 +388,7 @@ function dominantColors(piano, root) {
 
  // 9, ♭9, #9, #11, 13, ♭13
 
- colors = piano.find(root, SEMI_MAJOR_NINTH) + " (9), " + piano.find(root, SEMI_MAJOR_NINTH-1) + " (♭9), " + piano.find(root, SEMI_MAJOR_NINTH+1) + " (#9), " + piano.find(root, SEMI_MAJOR_ELEVENTH+1) + " (#11), " + piano.find(root, SEMI_MAJOR_THIRTEENTH) + " (13), " + piano.find(root, SEMI_MAJOR_THIRTEENTH-1) + " (♭13)"
+ colors = "[ "+piano.find(root, SEMI_MAJOR_NINTH) + " Shell ]: " + piano.find(root, SEMI_MAJOR_NINTH) + " (9), " + piano.find(root, SEMI_MAJOR_THIRTEENTH) + " (13), " + "[ "+ piano.find(root, SEMI_MAJOR_NINTH-1) + " Shell ]: " + piano.find(root, SEMI_MAJOR_NINTH-1) + " (♭9), " + piano.find(root, SEMI_MAJOR_THIRTEENTH-1) + " (♭13)" + " [Extra: ]" + piano.find(root, SEMI_MAJOR_NINTH+1) + " (#9), " + piano.find(root, SEMI_MAJOR_ELEVENTH+1) + " (♭5, #11), "   
 
  return colors
 
@@ -422,7 +423,18 @@ function sortProgression(results, progression) {
         finalarray[5] = results.chords[3];
         finalarray[6] = results.chords[4];
         finalarray[7] = results.chords[7];
+    } else if (progression === "I-IV-III-vi-ii-V") {
 
+            finalarray[0] = results.chords[0];
+            finalarray[1] = results.chords[4];
+            finalarray[2] = results.chords[3];
+            finalarray[3] = results.chords[6];
+            finalarray[4] = results.chords[2];
+            finalarray[5] = results.chords[5];
+            finalarray[6] = results.chords[1];
+            finalarray[7] = results.chords[7];
+    
+       
     } else {
 
         finalarray = results.chords
@@ -453,7 +465,7 @@ function jazzMajorChordsForKey(piano, keySignature, chords, complexity) {
         // add the minor for 3 
         jazzChords.chords[3] = ["iii", chords[1] + "m7", minorTriad(piano, chords[1]), minorColors(piano, chords[1])];
         // add the major for 4
-        jazzChords.chords[4] = ["IV", chords[2] + "m7", majorTriad(piano, chords[2]), majorColors(piano,chords[2])];
+        jazzChords.chords[4] = ["IV", chords[2] + "maj7", majorTriad(piano, chords[2]), majorColors(piano,chords[2])];
         // add the dominant for 5
         jazzChords.chords[5] = ["V", chords[3] + "7", dominantTriad(piano, chords[3]), dominantColors(piano,chords[3])];
         // add the minor for 6
@@ -476,7 +488,7 @@ function jazzMajorChordsForKey(piano, keySignature, chords, complexity) {
         // add the minor for 3 
         jazzChords.chords[3] = ["iii", chords[1] + "m7", rootlessMinorShellA(piano, chords[1]), rootlessMinorShellB(piano, chords[1]), piano.find(chords[1], SEMI_FIFTH), minorNineFlatNine(piano, chords[1]), minorThirteenFlatThirteen(piano, chords[1])];
         // add the major for 4
-        jazzChords.chords[4] = ["IV", chords[2] + "m7", rootlessMajorShellA(piano, chords[2]), rootlessMajorShellB(piano, chords[2]), piano.find(chords[2], SEMI_FIFTH), majorNineFlatNine(piano, chords[2]), majorThirteenFlatThirteen(piano, chords[2])];
+        jazzChords.chords[4] = ["IV", chords[2] + "maj7", rootlessMajorShellA(piano, chords[2]), rootlessMajorShellB(piano, chords[2]), piano.find(chords[2], SEMI_FIFTH), majorNineFlatNine(piano, chords[2]), majorThirteenFlatThirteen(piano, chords[2])];
         // add the dominant for 5
         jazzChords.chords[5] = ["V", chords[3] + "7", rootlessDominantShellA(piano, chords[3]), rootlessDominantShellB(piano, chords[3]), piano.find(chords[3], SEMI_FIFTH), majorNineFlatNine(piano, chords[3]), majorThirteenFlatThirteen(piano, chords[3])];
         // add the minor for 6
@@ -500,7 +512,7 @@ function jazzMajorChordsForKey(piano, keySignature, chords, complexity) {
         // add the minor for 3 
         jazzChords.chords[3] = ["iii", chords[1] + "m7", rootlessMinorNineA(piano, chords[1]), rootlessMinorNineB(piano, chords[1])];
         // add the major for 4
-        jazzChords.chords[4] = ["IV", chords[2] + "m7", rootlessMajorNineA(piano, chords[2]), rootlessMajorNineB(piano, chords[2])];
+        jazzChords.chords[4] = ["IV", chords[2] + "maj7", rootlessMajorNineA(piano, chords[2]), rootlessMajorNineB(piano, chords[2])];
         // add the dominant for 5
         jazzChords.chords[5] = ["V", chords[3] + "7", rootlessDominantThirteenA(piano, chords[3]), rootlessDominantThirteenB(piano, chords[3])];
         // add the minor for 6
@@ -527,7 +539,7 @@ function jazzMajorChordsForKey(piano, keySignature, chords, complexity) {
         // add the minor for 3 
         jazzChords.chords[3] = ["iii", chords[1] + "m7", rootlessMinorSixNineA(piano, chords[1]), rootlessMinorSixNineB(piano, chords[1])];
         // add the major for 4
-        jazzChords.chords[4] = ["IV", chords[2] + "m7", rootlessMajorSixNineA(piano, chords[2]), rootlessMajorSixNineB(piano, chords[2])];
+        jazzChords.chords[4] = ["IV", chords[2] + "maj7", rootlessMajorSixNineA(piano, chords[2]), rootlessMajorSixNineB(piano, chords[2])];
         // add the dominant for 5
         jazzChords.chords[5] = ["V", chords[3] + "7", rootlessDominantThirteenA(piano, chords[3]), rootlessDominantThirteenB(piano, chords[3])];
         // add the minor for 6
@@ -552,7 +564,7 @@ function jazzMajorChordsForKey(piano, keySignature, chords, complexity) {
         // add the minor for 3 
         jazzChords.chords[3] = ["iii", chords[1] + "m7", rootlessMinorSixNineA(piano, chords[1]), rootlessMinorSixNineB(piano, chords[1])];
         // add the major for 4
-        jazzChords.chords[4] = ["IV", chords[2] + "m7", rootlessMajorSixNineA(piano, chords[2]), rootlessMajorSixNineB(piano, chords[2])];
+        jazzChords.chords[4] = ["IV", chords[2] + "maj7", rootlessMajorSixNineA(piano, chords[2]), rootlessMajorSixNineB(piano, chords[2])];
         // add the dominant for 5
         jazzChords.chords[5] = ["V", chords[3] + "7", rootlessDominantThirteenA(piano, chords[3]), rootlessDominantThirteenB(piano, chords[3])];
         // add the minor for 6
