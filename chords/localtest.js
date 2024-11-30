@@ -81,6 +81,27 @@ function UPPERSTRUCTURE() {
 
 }
 
+function UPPERTEST() {
+
+  results = chords.jazzMajorChordsForKey(piano, "C", majorKeys["C"], "uppers4", "I-vi-ii-V")
+  console.log(chords.sortProgression(results, "I-vi-ii-V"))
+
+}
+
+function ROOTLESS() {
+
+  results = chords.jazzMajorChordsForKey(piano, "C", majorKeys["C"], "rootless", "I-vi-ii-V")
+  console.log(chords.sortProgression(results, "I-vi-ii-V"))
+
+}
+
+function Passing() {
+
+  results = chords.jazzMajorChordsForKey(piano, "C", majorKeys["C"], "passing", "I-vi-ii-V")
+  console.log(chords.sortProgression(results, "I-vi-ii-V"))
+
+}
+
 function Drop2() {
   console.log("F6 Drop 2 A: "+chords.drop2MajorSixA(piano, "F"));
   console.log("F6 Drop 2 B: "+chords.drop2MajorSixB(piano, "F"));
@@ -89,6 +110,11 @@ function Drop2() {
 
 }
 
-KEYTEST()
+//UPPERTEST()
+
+// ROOTLESS()
+
+// Passing Test
+Passing()
 
 
